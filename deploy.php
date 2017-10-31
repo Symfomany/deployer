@@ -30,32 +30,6 @@ host('54.36.181.203')
 ->addSshOption('StrictHostKeyChecking', 'no');
 
 
-
-/**
- * Main task
- */
-task('deploying', [
-    'deploy:info',
-    'deploy:prepare',
-    'deploy:lock',
-    'deploy:release',
-    'deploy:update_code',
-    'deploy:clear_paths',
-    'deploy:create_cache_dir',
-    'deploy:shared',
-    'deploy:assets',
-    'deploy:vendors',
-    'deploy:cache:clear',
-    'deploy:cache:warmup',
-    'deploy:writable',
-    'deploy:symlink',
-    'cleanup',
-    'deploy:unlock'
-])->desc('Deploy your project...');
-// Display success message on completion
-after('deploying', 'success');
-
-
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
